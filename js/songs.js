@@ -5,6 +5,10 @@
  *   1. PianoSong 인스턴스를 SONGS 배열에 append합니다.
  *   2. locked: false 로 설정하고 notes 배열을 채웁니다.
  *   3. locked: true 인 채로 두면 곡 선택 화면에서 "곧 만나요!" 상태로 표시됩니다.
+ *
+ * 계이름 표기 규칙: 도 레 미 파 솔 라 시 도↑  (높은 도는 반드시 "도↑")
+ * 지원 note 식별자: c4 d4 e4 f4 g4 a4 b4 c5
+ * number 필드: 내부 참조용(1~8), UI에 표시하지 않음
  */
 
 const SONGS = [
@@ -15,11 +19,11 @@ const SONGS = [
     emoji: '🌸',
     level: 1,
     notes: [
-      new SongNote({ note: 'c4', number: 1, name: '도', audioFile: 'c4.mp3' }),
-      new SongNote({ note: 'd4', number: 2, name: '레', audioFile: 'd4.mp3' }),
-      new SongNote({ note: 'e4', number: 3, name: '미', audioFile: 'e4.mp3' }),
-      new SongNote({ note: 'd4', number: 2, name: '레', audioFile: 'd4.mp3' }),
-      new SongNote({ note: 'c4', number: 1, name: '도', audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
     ],
   }),
 
@@ -30,35 +34,35 @@ const SONGS = [
     level: 1,
     notes: [
       // 3 2 1 2 3 3 3
-      new SongNote({ note: 'e4', number: 3, name: '미', audioFile: 'e4.mp3' }),
-      new SongNote({ note: 'd4', number: 2, name: '레', audioFile: 'd4.mp3' }),
-      new SongNote({ note: 'c4', number: 1, name: '도', audioFile: 'c4.mp3' }),
-      new SongNote({ note: 'd4', number: 2, name: '레', audioFile: 'd4.mp3' }),
-      new SongNote({ note: 'e4', number: 3, name: '미', audioFile: 'e4.mp3' }),
-      new SongNote({ note: 'e4', number: 3, name: '미', audioFile: 'e4.mp3' }),
-      new SongNote({ note: 'e4', number: 3, name: '미', audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
       // 2 2 2
-      new SongNote({ note: 'd4', number: 2, name: '레', audioFile: 'd4.mp3' }),
-      new SongNote({ note: 'd4', number: 2, name: '레', audioFile: 'd4.mp3' }),
-      new SongNote({ note: 'd4', number: 2, name: '레', audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
       // 3 5 5
-      new SongNote({ note: 'e4', number: 3, name: '미', audioFile: 'e4.mp3' }),
-      new SongNote({ note: 'g4', number: 5, name: '솔', audioFile: 'g4.mp3' }),
-      new SongNote({ note: 'g4', number: 5, name: '솔', audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
       // 3 2 1 2 3 3 3
-      new SongNote({ note: 'e4', number: 3, name: '미', audioFile: 'e4.mp3' }),
-      new SongNote({ note: 'd4', number: 2, name: '레', audioFile: 'd4.mp3' }),
-      new SongNote({ note: 'c4', number: 1, name: '도', audioFile: 'c4.mp3' }),
-      new SongNote({ note: 'd4', number: 2, name: '레', audioFile: 'd4.mp3' }),
-      new SongNote({ note: 'e4', number: 3, name: '미', audioFile: 'e4.mp3' }),
-      new SongNote({ note: 'e4', number: 3, name: '미', audioFile: 'e4.mp3' }),
-      new SongNote({ note: 'e4', number: 3, name: '미', audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
       // 2 2 3 2 1
-      new SongNote({ note: 'd4', number: 2, name: '레', audioFile: 'd4.mp3' }),
-      new SongNote({ note: 'd4', number: 2, name: '레', audioFile: 'd4.mp3' }),
-      new SongNote({ note: 'e4', number: 3, name: '미', audioFile: 'e4.mp3' }),
-      new SongNote({ note: 'd4', number: 2, name: '레', audioFile: 'd4.mp3' }),
-      new SongNote({ note: 'c4', number: 1, name: '도', audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
     ],
   }),
 
@@ -69,34 +73,361 @@ const SONGS = [
     level: 1,
     notes: [
       // 5 5 6 6 5 5 3
-      new SongNote({ note: 'g4', number: 5, name: '솔', audioFile: 'g4.mp3' }),
-      new SongNote({ note: 'g4', number: 5, name: '솔', audioFile: 'g4.mp3' }),
-      new SongNote({ note: 'a4', number: 6, name: '라', audioFile: 'a4.mp3' }),
-      new SongNote({ note: 'a4', number: 6, name: '라', audioFile: 'a4.mp3' }),
-      new SongNote({ note: 'g4', number: 5, name: '솔', audioFile: 'g4.mp3' }),
-      new SongNote({ note: 'g4', number: 5, name: '솔', audioFile: 'g4.mp3' }),
-      new SongNote({ note: 'e4', number: 3, name: '미', audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
       // 5 5 3 3 2
-      new SongNote({ note: 'g4', number: 5, name: '솔', audioFile: 'g4.mp3' }),
-      new SongNote({ note: 'g4', number: 5, name: '솔', audioFile: 'g4.mp3' }),
-      new SongNote({ note: 'e4', number: 3, name: '미', audioFile: 'e4.mp3' }),
-      new SongNote({ note: 'e4', number: 3, name: '미', audioFile: 'e4.mp3' }),
-      new SongNote({ note: 'd4', number: 2, name: '레', audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
       // 5 5 6 6 5 5 3
-      new SongNote({ note: 'g4', number: 5, name: '솔', audioFile: 'g4.mp3' }),
-      new SongNote({ note: 'g4', number: 5, name: '솔', audioFile: 'g4.mp3' }),
-      new SongNote({ note: 'a4', number: 6, name: '라', audioFile: 'a4.mp3' }),
-      new SongNote({ note: 'a4', number: 6, name: '라', audioFile: 'a4.mp3' }),
-      new SongNote({ note: 'g4', number: 5, name: '솔', audioFile: 'g4.mp3' }),
-      new SongNote({ note: 'g4', number: 5, name: '솔', audioFile: 'g4.mp3' }),
-      new SongNote({ note: 'e4', number: 3, name: '미', audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
       // 5 3 2 3 1
-      new SongNote({ note: 'g4', number: 5, name: '솔', audioFile: 'g4.mp3' }),
-      new SongNote({ note: 'e4', number: 3, name: '미', audioFile: 'e4.mp3' }),
-      new SongNote({ note: 'd4', number: 2, name: '레', audioFile: 'd4.mp3' }),
-      new SongNote({ note: 'e4', number: 3, name: '미', audioFile: 'e4.mp3' }),
-      new SongNote({ note: 'c4', number: 1, name: '도', audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+    ],
+  }),
+
+  // ── 신규 곡 ────────────────────────────────────────────────
+
+  new PianoSong({
+    id:    'nabiya',
+    title: '나비야',
+    emoji: '🦋',
+    level: 1,
+    notes: [
+      // 솔 미 미 파 레 레 도 레 미 파 솔 솔 솔
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      // 솔 미 미 파 레 레 도 미 솔 솔 미
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      // 레 레 레 레 레 미 파 미 미 미 미 미 파 솔
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      // 솔 미 미 파 레 레 도 미 솔 솔 도
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+    ],
+  }),
+
+  new PianoSong({
+    id:    'twinkle',
+    title: '반짝반짝 작은 별',
+    emoji: '⭐',
+    level: 1,
+    notes: [
+      // 도 도 솔 솔 라 라 솔
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      // 파 파 미 미 레 레 도
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      // 솔 솔 파 파 미 미 레
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      // 솔 솔 파 파 미 미 레
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      // 도 도 솔 솔 라 라 솔
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      // 파 파 미 미 레 레 도
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+    ],
+  }),
+
+  new PianoSong({
+    id:    'mountain-rabbit',
+    title: '산토끼',
+    emoji: '🐰',
+    level: 1,
+    notes: [
+      // 미 솔 도↑ 라 솔 미 솔 미 레 도
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'c5', number: 8, name: '도↑', audioFile: 'c5.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      // 솔 라 솔 미 솔 라 라 솔
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      // 미 솔 도↑ 라 솔 미 솔 라 도↑ 시 라
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'c5', number: 8, name: '도↑', audioFile: 'c5.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'c5', number: 8, name: '도↑', audioFile: 'c5.mp3' }),
+      new SongNote({ note: 'b4', number: 7, name: '시',  audioFile: 'b4.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      // 솔 솔 미 레 도
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+    ],
+  }),
+
+  new PianoSong({
+    id:    'three-bears',
+    title: '곰 세 마리',
+    emoji: '🐻',
+    level: 2,
+    notes: [
+      // 도 미 솔 솔 미 도
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      // 레 파 라 라 파 레
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      // 솔 도↑ 솔 미 솔 도↑ 솔 미
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'c5', number: 8, name: '도↑', audioFile: 'c5.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'c5', number: 8, name: '도↑', audioFile: 'c5.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      // 솔 솔 솔 라 솔 파 미
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      // 파 파 파 솔 파 미 레
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      // 미 솔 미 레 도
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+    ],
+  }),
+
+  new PianoSong({
+    id:    'happy-birthday',
+    title: '생일 축하 노래',
+    emoji: '🎂',
+    level: 2,
+    notes: [
+      // 도 도 레 도 파 미
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      // 도 도 레 도 솔 파
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      // 도 도 도↑ 라 파 미 레
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'c5', number: 8, name: '도↑', audioFile: 'c5.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      // 시 시 라 파 솔 파
+      new SongNote({ note: 'b4', number: 7, name: '시',  audioFile: 'b4.mp3' }),
+      new SongNote({ note: 'b4', number: 7, name: '시',  audioFile: 'b4.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+    ],
+  }),
+
+  new PianoSong({
+    id:    'cotton-candy',
+    title: '솜사탕',
+    emoji: '🍭',
+    level: 2,
+    notes: [
+      // 솔 솔 라 솔 도↑ 시
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'c5', number: 8, name: '도↑', audioFile: 'c5.mp3' }),
+      new SongNote({ note: 'b4', number: 7, name: '시',  audioFile: 'b4.mp3' }),
+      // 솔 솔 라 솔 라 솔
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      // 파 파 솔 파 라 솔
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'a4', number: 6, name: '라',  audioFile: 'a4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      // 파 파 솔 파 솔 파
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      // 미 미 파 미 솔 파
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
+      new SongNote({ note: 'f4', number: 4, name: '파',  audioFile: 'f4.mp3' }),
+      // 미 레 도 레 미 도
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'd4', number: 2, name: '레',  audioFile: 'd4.mp3' }),
+      new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
+      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
     ],
   }),
 
 ];
+
+// 지원하지 않는 계이름·note 식별자를 콘솔에 경고합니다.
+(function validateSongs() {
+  var VALID_NAMES = new Set(['도', '레', '미', '파', '솔', '라', '시', '도↑']);
+  var VALID_NOTES = new Set(['c4', 'd4', 'e4', 'f4', 'g4', 'a4', 'b4', 'c5']);
+  SONGS.forEach(function (song) {
+    song.notes.forEach(function (n, i) {
+      if (!VALID_NAMES.has(n.name)) {
+        console.warn('[채채피아노] "' + song.title + '" ' + (i + 1) + '번째 음: 지원하지 않는 계이름 "' + n.name + '"');
+      }
+      if (!VALID_NOTES.has(n.note)) {
+        console.warn('[채채피아노] "' + song.title + '" ' + (i + 1) + '번째 음: 지원하지 않는 note 식별자 "' + n.note + '"');
+      }
+    });
+  });
+})();
