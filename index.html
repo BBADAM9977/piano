@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>채채피아노</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- 항상 표시되는 헤더 -->
+    <header class="app-header">
+      <button id="back-btn" class="back-btn" hidden>← 뒤로</button>
+      <h1 class="app-title">🎹 채채피아노</h1>
+    </header>
+
+    <!-- ① 곡 선택 화면 (앱 시작 시 표시) -->
+    <section id="song-select-screen" class="song-select-screen">
+      <div id="song-list-container"></div>
+    </section>
+
+    <!-- ② 연주 화면 (곡 선택 후 표시) -->
+    <section id="play-screen" class="play-screen screen-hidden">
+
+      <main class="app-main" id="app-main">
+        <!-- 악보 표시 -->
+        <div id="score-display" class="score-display"></div>
+
+        <!-- 피드백 토스트 -->
+        <div id="feedback-toast" class="feedback-toast" aria-live="polite"></div>
+
+        <!-- 완료 오버레이 -->
+        <div id="completion-overlay" class="completion-overlay" role="dialog" aria-modal="true">
+          <div class="completion-card">
+            <div class="completion-icon">🎉</div>
+            <p class="completion-title">연주 완료!</p>
+            <p id="completion-msg" class="completion-sub">정말 잘했어요!</p>
+            <div class="star-reward" aria-label="별 3개">
+              <span class="star star-1" aria-hidden="true">⭐</span>
+              <span class="star star-2" aria-hidden="true">⭐</span>
+              <span class="star star-3" aria-hidden="true">⭐</span>
+            </div>
+            <div class="completion-buttons">
+              <button id="restart-btn" class="restart-btn">다시하기</button>
+              <button id="goto-select-btn" class="goto-select-btn">곡 선택으로</button>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- 피아노 건반 -->
+      <div class="piano-section">
+        <div id="piano-keyboard" class="piano-keyboard"></div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <script src="js/note-colors.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/piano.js"></script>
+  <script src="js/models/song-note.js"></script>
+  <script src="js/models/piano-song.js"></script>
+  <script src="js/songs.js"></script>
+  <script src="js/score.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/song-select.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

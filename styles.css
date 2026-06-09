@@ -1,0 +1,717 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Nanum Gothic', sans-serif;
+}
+
+body {
+  background: linear-gradient(180deg, #FFF0FA 0%, #F0F0FF 100%);
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh; /* 모바일 주소창 제외한 실제 높이 */
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ── 헤더 ─────────────────────────────── */
+.app-header {
+  flex-shrink: 0;
+  position: relative;           /* 뒤로가기 버튼 기준점 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #FFD6EC 0%, #E8D6FF 100%);
+  padding: 18px 0 14px;
+  border-bottom: 3px solid #F0B0D8;
+  box-shadow: 0 3px 10px rgba(200, 100, 180, 0.2);
+}
+
+/* ── 뒤로가기 버튼 ────────────────────── */
+.back-btn {
+  position: absolute;
+  left: 12px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 2px solid #F0B0D8;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #C44D8E;
+  cursor: pointer;
+  font-family: inherit;
+  touch-action: none;
+  outline: none;
+  transition: background 0.12s ease, transform 0.08s ease;
+  white-space: nowrap;
+}
+
+.back-btn:active {
+  background: rgba(255, 210, 236, 0.95);
+  transform: scale(0.96);
+}
+
+.app-title {
+  font-size: 1.9rem;
+  color: #C44D8E;
+  letter-spacing: 3px;
+  font-weight: 700;
+  text-shadow: 0 2px 6px rgba(196, 77, 142, 0.25);
+}
+
+/* ── 메인 영역 ────────────────────────── */
+.app-main {
+  flex: 1;
+  position: relative;        /* 토스트·완료 오버레이 기준점 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 14px 16px 18px;
+}
+
+/* ── 악보 표시 영역 ──────────────────────── */
+.score-display {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.score-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #C44D8E;
+  letter-spacing: 2px;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 6px 22px;
+  border-radius: 20px;
+  border: 2px solid #F0C0E0;
+}
+
+/* ── 진행 바 ──────────────────────────────── */
+.score-progress-bar {
+  width: 100%;
+  max-width: 280px;
+  height: 6px;
+  background: rgba(200, 150, 210, 0.2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.score-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FFB3C1, #C8B8FF);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+  width: 0%;
+}
+
+/* ── 현재 음 카드 ──────────────────────────── */
+.current-note-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 24px 52px 26px;
+  border-radius: 32px;
+  background-color: var(--key-color, #FFE0F0);
+  border: 3px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.13);
+  min-width: 180px;
+  transition: background-color 0.22s ease;
+  animation: note-pulse 2.2s ease-in-out infinite;
+}
+
+.current-note-hint {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.4);
+  letter-spacing: 1.5px;
+}
+
+.current-note-name {
+  font-size: 5.5rem;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.65);
+  line-height: 1;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes note-pulse {
+  0%, 100% { box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12); }
+  50%       { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.20); }
+}
+
+/* ── 진행 힌트 문구 ────────────────────────── */
+.progress-hint-text {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #B878B8;
+  letter-spacing: 0.5px;
+  text-align: center;
+  min-height: 1.3em;
+}
+
+/* ── 다음 음 미리보기 ──────────────────────── */
+.upcoming-notes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.upcoming-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #C090C0;
+  letter-spacing: 1px;
+}
+
+.upcoming-list {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.upcoming-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 46px;
+  height: 46px;
+  padding: 0 10px;
+  border-radius: 14px;
+  background-color: var(--key-color, #F0E0FF);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.55);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.upcoming-note--dim {
+  opacity: 0.42;
+  min-width: 40px;
+  height: 40px;
+  font-size: 0.9rem;
+}
+
+.upcoming-arrow {
+  font-size: 0.9rem;
+  color: #C8A0C8;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.upcoming-last-msg {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #C088C0;
+  letter-spacing: 0.5px;
+}
+
+/* ── 피아노 섹션 ──────────────────────── */
+.piano-section {
+  flex-shrink: 0;
+  padding: 12px 8px 22px;
+  background: linear-gradient(180deg, #F0D8FF 0%, #FFD8F0 100%);
+  border-top: 3px solid #F0B0D8;
+  box-shadow: 0 -3px 12px rgba(200, 100, 180, 0.18);
+}
+
+/* ── 건반 묶음 ────────────────────────── */
+.piano-keyboard {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+  height: 185px;
+}
+
+/* ── 개별 건반 ────────────────────────── */
+.piano-key {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  border-radius: 0 0 14px 14px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 8px 3px 14px;
+  user-select: none;
+  touch-action: none;
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.18);
+  transition: transform 0.07s ease,
+              box-shadow 0.07s ease,
+              filter 0.07s ease;
+  outline: none;
+}
+
+.piano-key.pressed {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.18);
+  filter: brightness(0.82);
+}
+
+/* 지금 눌러야 할 건반 — 계이름 색상 glow 펄스 */
+@keyframes key-hint-pulse {
+  0%, 100% {
+    box-shadow:
+      0 5px 0 rgba(0, 0, 0, 0.18),
+      0 0 0 3px rgba(255, 255, 255, 0.82),
+      0 0 14px var(--glow-color, rgba(196, 77, 142, 0.45));
+  }
+  50% {
+    box-shadow:
+      0 5px 0 rgba(0, 0, 0, 0.18),
+      0 0 0 3px rgba(255, 255, 255, 0.96),
+      0 0 26px var(--glow-color, rgba(196, 77, 142, 0.65));
+  }
+}
+
+.piano-key.key-active {
+  filter: brightness(1.1);
+  animation: key-hint-pulse 1.8s ease-in-out infinite;
+}
+
+/* 눌리는 순간 pressed 상태 복원 (key-hint-pulse 중단) */
+.piano-key.key-active.pressed {
+  animation: none;
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.18);
+  filter: brightness(0.82);
+}
+
+/* 정답 건반 빛남 (key-active 애니메이션보다 나중에 선언 → override) */
+@keyframes key-correct-flash {
+  0%, 100% { filter: brightness(1.1); }
+  45%       { filter: brightness(1.55) drop-shadow(0 0 10px rgba(255, 255, 255, 0.85)); }
+}
+
+.piano-key.key-correct {
+  animation: key-correct-flash 0.35s ease;
+}
+
+.key-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.62);
+  line-height: 1.2;
+  text-align: center;
+}
+
+/* ════════════════════════════════════════════
+   정답 판정 UI
+   ════════════════════════════════════════════ */
+
+/* ── 오답: 현재 음 카드 흔들기 ──────────────── */
+@keyframes card-shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-5px); }
+  40%       { transform: translateX(5px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+
+/* note-pulse보다 specificity 높아 override (.current-note-card.shake > .current-note-card) */
+.current-note-card.shake {
+  animation: card-shake 0.45s ease;
+}
+
+/* ── 완주: 현재 음 카드 반짝임 ──────────────── */
+@keyframes card-complete-flash {
+  0%   { transform: scale(1); filter: brightness(1); }
+  45%  { transform: scale(1.12) translateY(-8px); filter: brightness(1.3); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+
+.current-note-card.complete-flash {
+  animation: card-complete-flash 0.42s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── 피드백 토스트 ───────────────────────── */
+.feedback-toast {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%) translateY(12px);
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 24px;
+  padding: 10px 26px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #C44D8E;
+  border: 2px solid #F0C0E0;
+  box-shadow: 0 4px 16px rgba(200, 100, 180, 0.25);
+  opacity: 0;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.feedback-toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.feedback-toast.wrong {
+  color: #A0708A;
+  border-color: #E0C8D8;
+  box-shadow: 0 4px 16px rgba(180, 120, 160, 0.2);
+}
+
+/* ── 완료 오버레이 ───────────────────────── */
+.completion-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(255, 215, 240, 0.97) 0%, rgba(225, 215, 255, 0.97) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.38s ease;
+  z-index: 20;
+}
+
+.completion-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.completion-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.completion-icon {
+  font-size: 5.5rem;
+  animation: completion-bounce 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes completion-bounce {
+  0%   { transform: scale(0) rotate(-15deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.completion-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #C44D8E;
+  letter-spacing: 2px;
+}
+
+.completion-sub {
+  font-size: 1.15rem;
+  color: #9070B0;
+  font-weight: 600;
+  letter-spacing: 1px;
+  min-height: 1.6em; /* 메시지 교체 시 레이아웃 흔들림 방지 */
+}
+
+/* ── 별 보상 ────────────────────────────── */
+.star-reward {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.star {
+  display: inline-block;
+  font-size: 2.8rem;
+  transform: scale(0);
+  opacity: 0;
+  line-height: 1;
+}
+
+/* .visible 추가 시 별이 하나씩 등장 */
+.completion-overlay.visible .star-1 {
+  animation:
+    star-appear 0.5s 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+    star-shine  2s   1.4s ease-in-out infinite;
+}
+.completion-overlay.visible .star-2 {
+  animation:
+    star-appear 0.5s 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+    star-shine  2s   1.7s ease-in-out infinite;
+}
+.completion-overlay.visible .star-3 {
+  animation:
+    star-appear 0.5s 0.85s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+    star-shine  2s   2.0s ease-in-out infinite;
+}
+
+@keyframes star-appear {
+  0%   { transform: scale(0) rotate(-20deg); opacity: 0; }
+  65%  { transform: scale(1.4) rotate(8deg);  opacity: 1; }
+  100% { transform: scale(1)   rotate(0deg);  opacity: 1; }
+}
+
+@keyframes star-shine {
+  0%, 100% { filter: drop-shadow(0 0 2px rgba(255, 215, 0, 0.3)); transform: scale(1); }
+  50%       { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.9)); transform: scale(1.1); }
+}
+
+/* ── 완료 버튼 묶음 ─────────────────────── */
+.completion-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 4px;
+  align-items: center;
+  width: 100%;
+}
+
+.restart-btn {
+  width: 100%;
+  max-width: 250px;
+  padding: 18px 32px;
+  background: linear-gradient(135deg, #FFB8D8 0%, #D8B8FF 100%);
+  border: none;
+  border-radius: 30px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #C44D8E;
+  cursor: pointer;
+  box-shadow: 0 5px 0 rgba(196, 77, 142, 0.28);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+  touch-action: none;
+  outline: none;
+  font-family: inherit;
+}
+
+.restart-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 rgba(196, 77, 142, 0.28);
+}
+
+.goto-select-btn {
+  width: 100%;
+  max-width: 250px;
+  padding: 18px 32px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 2.5px solid #F0B0D8;
+  border-radius: 30px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #C44D8E;
+  cursor: pointer;
+  box-shadow: 0 5px 0 rgba(196, 77, 142, 0.18);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+  touch-action: none;
+  outline: none;
+  font-family: inherit;
+}
+
+.goto-select-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 rgba(196, 77, 142, 0.18);
+}
+
+/* ── 정답 칭찬 플래시 ─────────────────────── */
+@keyframes correct-flash {
+  0%, 100% { filter: brightness(1); }
+  40%       { filter: brightness(1.28); }
+}
+
+/* note-pulse보다 specificity 높아 override */
+.current-note-card.correct-flash {
+  animation: correct-flash 0.22s ease;
+}
+
+/* ── 음 변경 팝-인 애니메이션 ─────────────────── */
+@keyframes note-advance {
+  0%   { transform: scale(0.88); filter: brightness(1.25); }
+  60%  { transform: scale(1.08); filter: brightness(1.12); }
+  100% { transform: scale(1);    filter: brightness(1); }
+}
+
+.current-note-card.note-advance {
+  animation: note-advance 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── 음표 파티클 (정답 시 떠오름) ───────────── */
+.note-particle {
+  position: absolute;
+  font-size: 1.4rem;
+  line-height: 1;
+  pointer-events: none;
+  animation: note-float 0.9s ease-out forwards;
+  z-index: 5;
+}
+
+@keyframes note-float {
+  0%   { transform: translateY(0)    scale(1);   opacity: 1; }
+  100% { transform: translateY(-52px) scale(0.5); opacity: 0; }
+}
+
+/* ════════════════════════════════════════════
+   v0.5 화면 전환 + 곡 선택 화면
+   ════════════════════════════════════════════ */
+
+/* 화면 전환 유틸리티 */
+.screen-hidden { display: none !important; }
+
+/* ── 곡 선택 화면 ─────────────────────── */
+.song-select-screen {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+#song-list-container {
+  padding: 22px 16px 36px;
+  display: flex;
+  flex-direction: column;
+}
+
+.select-tagline {
+  text-align: center;
+  font-size: 1rem;
+  color: #B878B8;
+  font-weight: 600;
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+
+/* 곡 카드 목록 */
+.song-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 곡 카드 공통 */
+.song-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 20px;
+  border-radius: 22px;
+  font-family: inherit;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 플레이 가능 카드 */
+.song-card--available {
+  background: linear-gradient(135deg, #FFF5FC 0%, #F8F0FF 100%);
+  border: 2.5px solid #F0C0E8;
+  box-shadow: 0 5px 0 rgba(200, 100, 180, 0.13);
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* 계이름 무지개 스트라이프 — 도/레/미/파/솔/라/시/도↑ 색상 순서 */
+.song-card--available::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    #FFB3C1 0%,
+    #FFCFA0 14%,
+    #FFF2A0 28%,
+    #B8F0B8 43%,
+    #A8E4FF 57%,
+    #C8B8FF 71%,
+    #FFB8F0 85%,
+    #FFD0DC 100%
+  );
+  opacity: 0.85;
+}
+
+.song-card--available:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 rgba(200, 100, 180, 0.13);
+}
+
+/* 잠긴 카드 */
+.song-card--locked {
+  background: rgba(255, 255, 255, 0.55);
+  border: 2.5px dashed #DFC8DF;
+  opacity: 0.68;
+  cursor: default;
+}
+
+/* 카드 이모지 */
+.song-card-emoji {
+  font-size: 2.8rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* 카드 텍스트 영역 */
+.song-card-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.song-card-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #9830A8;
+  line-height: 1.2;
+}
+
+.song-card--locked .song-card-title {
+  color: #B8A0B8;
+}
+
+.song-card-meta {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #C090C0;
+}
+
+.song-card-coming {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #C0A0C0;
+}
+
+.song-card-arrow {
+  font-size: 1.1rem;
+  color: #D080C8;
+  flex-shrink: 0;
+}
+
+/* ── 연주 화면 ────────────────────────── */
+.play-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0; /* flex 자식이 넘치지 않도록 */
+}
