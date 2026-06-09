@@ -583,7 +583,7 @@ body {
 }
 
 #song-list-container {
-  padding: 22px 16px 36px;
+  padding: 22px 16px calc(48px + env(safe-area-inset-bottom, 0px));
   display: flex;
   flex-direction: column;
 }
@@ -625,6 +625,7 @@ body {
   box-shadow: 0 5px 0 rgba(200, 100, 180, 0.13);
   cursor: pointer;
   transition: transform 0.1s ease, box-shadow 0.1s ease;
+  touch-action: pan-y; /* 세로 스크롤을 브라우저에 위임, 탭은 click으로 처리 */
 }
 
 /* 계이름 무지개 스트라이프 — 도/레/미/파/솔/라/시/도↑ 색상 순서 */

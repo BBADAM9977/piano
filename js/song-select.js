@@ -77,9 +77,33 @@ class SongSelectScreen {
     btn.appendChild(infoEl);
     btn.appendChild(arrowEl);
 
+    // 스크롤과 탭 구분:
+    //   - pointerdown 시 즉시 선택하지 않고 시작 Y 좌표만 기록
+    //   - pointermove 로 10px 이상 이동하면 스크롤 의도로 판단
+    //   - pointercancel 은 브라우저가 스크롤을 가져간 신호이므로 _moved = true
+    //   - click 은 탭(짧게 손가락을 뗌)에서만 발생하므로 여기서 선택 실행
+    let _startY = 0;
+    let _moved  = false;
+
     btn.addEventListener('pointerdown', (e) => {
-      e.preventDefault();
-      if (this.onSongSelect) this.onSongSelect(song);
+      _startY = e.clientY;
+      _moved  = false;
+    });
+
+    btn.addEventListener('pointermove', (e) => {
+      if (!_moved && Math.abs(e.clientY - _startY) > 10) {
+        _moved = true;
+      }
+    });
+
+    btn.addEventListener('pointercancel', () => {
+      _moved = true;
+    });
+
+    btn.addEventListener('click', () => {
+      if (!_moved && this.onSongSelect) {
+        this.onSongSelect(song);
+      }
     });
 
     return btn;
