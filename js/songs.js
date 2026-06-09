@@ -243,12 +243,12 @@ const SONGS = [
       new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
       new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
       new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
-      // 도 솔 도 솔 도 솔 미 솔 레 파 미 레 도
-      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      // 도↑ 솔 도↑ 솔 도↑ 솔 미 솔 레 파 미 레 도
+      new SongNote({ note: 'c5', number: 8, name: '도↑', audioFile: 'c5.mp3' }),
       new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
-      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'c5', number: 8, name: '도↑', audioFile: 'c5.mp3' }),
       new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
-      new SongNote({ note: 'c4', number: 1, name: '도',  audioFile: 'c4.mp3' }),
+      new SongNote({ note: 'c5', number: 8, name: '도↑', audioFile: 'c5.mp3' }),
       new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
       new SongNote({ note: 'e4', number: 3, name: '미',  audioFile: 'e4.mp3' }),
       new SongNote({ note: 'g4', number: 5, name: '솔',  audioFile: 'g4.mp3' }),
